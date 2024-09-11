@@ -2,32 +2,53 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+	@apply text-black-default;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+h1 {
+	@apply text-4xl font-medium;
+}
+
+label {
+	@apply text-sm font-medium;
+}
+
+input[type='checkbox'] {
+	width: 14px;
+	height: 14px;
+	accent-color: #6a29ff;
+}
+
+input[type='password']::-ms-reveal,
+input[type='password']::-ms-clear {
+	display: none;
+}
+
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+input[type='number'] {
+	-moz-appearance: textfield;
+}
+
+@layer components {
+	.input-default {
+		@apply outline outline-1 focus:outline-gray-400 px-4 py-2 rounded-lg outline-gray-300;
+	}
+
+	.button-submit {
+		@apply bg-primary-color px-4 py-2 border text-white rounded-lg hover:bg-primary-color-hover transition-colors ease-linear duration-75;
+	}
+
+	.additional-text {
+		@apply text-zinc-400 text-sm;
+	}
+
+	.error-field {
+		@apply outline-pink-error focus:outline-pink-error;
+	}
 }
