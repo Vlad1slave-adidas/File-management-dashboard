@@ -1,13 +1,25 @@
 import { Cloud } from 'lucide-react'
 import React from 'react'
 
-export default function Logo() {
+export default function Logo({ isAbsolute }: { isAbsolute?: boolean }) {
 	return (
-		<div className='flex items-center gap-3 absolute left-7 top-7'>
+		<div
+			className={
+				isAbsolute
+					? `flex items-center gap-3 absolute left-7 top-7`
+					: `flex items-center gap-3`
+			}
+		>
 			<div className='bg-primary-color p-[10px] rounded-xl'>
-				<Cloud color='white' width={16} height={16} />
+				<Cloud
+					color='white'
+					width={isAbsolute ? 16 : 20}
+					height={isAbsolute ? 16 : 20}
+				/>
 			</div>
-			<span className='font-bold'>JenxCloud</span>
+			<span className={`font-bold ${isAbsolute ? 'text-base' : 'text-lg'}`}>
+				JenxCloud
+			</span>
 		</div>
 	)
 }

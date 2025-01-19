@@ -10,7 +10,9 @@ const config: Config = {
 		extend: {
 			colors: {
 				'black-default': '#111726',
+				'gray-default': '#8491B7',
 				'white-main': '#F6F8FF',
+				'white-navigation': '#F9F7FF',
 				'primary-color': '#6A29FF',
 				'primary-color-hover': '#5521cc',
 				'pink-error': '#F62B6F',

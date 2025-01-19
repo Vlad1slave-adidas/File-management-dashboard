@@ -3,7 +3,7 @@
 import { cookies } from 'next/headers'
 import { createAdminClient, createSessionClient } from '../server/appwrite'
 import { redirect } from 'next/navigation'
-import { Client, ID } from 'node-appwrite'
+import { ID } from 'node-appwrite'
 
 export async function signInWithEmail(data: SignInParams) {
 	let success = false
@@ -87,8 +87,6 @@ export async function confirmPassword(
 	data: ConfirmPasswordFormData,
 	userId: string
 ) {
-	let success = false
-
 	try {
 		const { account } = await createAdminClient()
 
@@ -111,39 +109,38 @@ export async function confirmPassword(
 			sameSite: 'strict',
 			secure: true,
 		})
-
-		success = true
 	} catch (error: any) {
 		throw new Error(error.message)
-	} finally {
-		if (success) {
-			redirect('/new-password')
-		}
 	}
 }
 
-export async function updatePassword(newPassword: string, oldPassword: string) {
-	let success = false
-
+export async function createPasswordRecovery(email: string) {
 	try {
 		const { account } = await createSessionClient()
 
-		const session = await account.get()
+		const result = await account.createRecovery(
+			email,
+			'http://localhost:3000/new-password'
+		)
 
-		console.log('Информация о сессии:', session)
-
-		if (session) {
-			console.log('Новый пароль:', newPassword)
-			await account.updatePassword(newPassword, oldPassword)
-			success = true
-		} else {
-			throw new Error('User is not authenticated')
-		}
+		return result
 	} catch (error: any) {
 		throw new Error(error.message)
-	} finally {
-		if (success) {
-			redirect('/password-success-reset')
-		}
+	}
+}
+
+export async function updateRecovery(data: UpdateRecoveryParams) {
+	try {
+		const { account } = await createSessionClient()
+
+		const userId = data.userId
+		const secret = data.secret
+		const password = data.password
+
+		const result = await account.updateRecovery(userId, secret, password)
+
+		return result
+	} catch (error: any) {
+		throw new Error(error.message)
 	}
 }

@@ -2,26 +2,40 @@
 
 import { SubmitHandler, useForm } from 'react-hook-form'
 import Link from 'next/link'
-import useUser from '@/hooks/useUser'
-import { confirmPassword } from '@/lib/actions/auth.actions'
+import {
+	confirmPassword,
+	createPasswordRecovery,
+} from '@/lib/actions/auth.actions'
 import { useState } from 'react'
 import ToastError from '../ui/toasts/ToastError'
+import ButtonSubmit from '../ui/buttons/ButtonSubmit'
+import ToastSuccess from '../ui/toasts/ToastSuccess'
+import useUser from '@/hooks/useUser'
 
 export default function ConfirmPasswordForm() {
 	const { register, handleSubmit } = useForm<ConfirmPasswordFormData>({
 		mode: 'onChange',
 	})
 
-	const { userId } = useUser()
+	const { userId, email } = useUser()
 	const [error, setError] = useState(null)
+	const [isLoading, setIsLoading] = useState<boolean>(false)
+	const [isSuccess, setIsSuccess] = useState<boolean>(false)
 
 	const onSubmit: SubmitHandler<ConfirmPasswordFormData> = async data => {
 		setError(null)
+		setIsSuccess(false)
+		setIsLoading(true)
 
 		try {
-			const result = await confirmPassword(data, userId as string)
-			console.log(result)
+			await confirmPassword(data, userId as string)
+			await createPasswordRecovery(email as string)
+			setIsSuccess(true)
+			setError(null)
+			setIsLoading(false)
 		} catch (error: any) {
+			setIsLoading(false)
+			setIsSuccess(false)
 			setError(error.message)
 		}
 	}
@@ -70,9 +84,7 @@ export default function ConfirmPasswordForm() {
 				></input>
 			</div>
 
-			<button className='w-full button-submit mb-2' type='submit'>
-				Continue
-			</button>
+			<ButtonSubmit isLoading={isLoading} text='Continue' />
 
 			<div className='flex additional-text gap-1 justify-center'>
 				<span>Didn`t receive the email?</span>
@@ -85,6 +97,13 @@ export default function ConfirmPasswordForm() {
 			</div>
 
 			{error !== null && <ToastError error={error} message={error} />}
+
+			{isSuccess && (
+				<ToastSuccess
+					isSuccess={isSuccess}
+					message='We send password reset link to email'
+				/>
+			)}
 		</form>
 	)
 }

@@ -70,3 +70,9 @@ declare interface ToastSuccessProps {
 	isSuccess: boolean
 	message: string
 }
+
+declare interface UpdateRecoveryParams {
+	userId: string
+	secret: string
+	password: string
+}

@@ -112,7 +112,7 @@ export default function SignUpForm() {
 				)}
 			</div>
 
-			<div className='flex flex-col gap-2'>
+			<div className='flex flex-col gap-3'>
 				<ButtonSubmit isLoading={isLoading} text='Sign up' />
 
 				<ButtonGoogle />

@@ -18,7 +18,7 @@ export default function PasswordResetPage() {
 				<h1 className='mb-3 text-3xl font-bold'>Reset your password</h1>
 				<div className='additional-text text-base'>
 					Forget your password? Please enter your email and we`ll send you a
-					4-digit code.
+					6-digit code or link to reset a password.
 				</div>
 			</div>
 

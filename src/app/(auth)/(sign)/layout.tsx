@@ -7,7 +7,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 		<div className='flex'>
 			<div className='relative w-1/2 h-screen flex justify-center items-center'>
 				<div>{children}</div>
-				<Logo />
+				<Logo isAbsolute={true} />
 			</div>
 			<div className='relative w-1/2 h-screen'>
 				<Image

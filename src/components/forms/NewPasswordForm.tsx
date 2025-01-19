@@ -5,8 +5,10 @@ import React, { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import ErrorMessage from '../ui/messages/ErrorMessage'
 import { Eye, EyeOff } from 'lucide-react'
-import { updatePassword } from '@/lib/actions/auth.actions'
 import ButtonSubmit from '../ui/buttons/ButtonSubmit'
+import { updateRecovery } from '@/lib/actions/auth.actions'
+import { useRouter, useSearchParams } from 'next/navigation'
+import ToastError from '../ui/toasts/ToastError'
 
 export default function NewPasswordForm() {
 	const { handleToggleShowPassword, showPassword } = useToggleShowPassword()
@@ -19,20 +21,46 @@ export default function NewPasswordForm() {
 		mode: 'onChange',
 	})
 
+	const searchParams = useSearchParams()
+
+	const router = useRouter()
+
 	const [isLoading, setIsLoading] = useState<boolean>(false)
+	const [error, setError] = useState<string | null>(null)
 
 	const onSubmit: SubmitHandler<NewPasswordFormData> = async data => {
 		setIsLoading(true)
 
 		try {
-			const result = await updatePassword(
-				data.newPassword,
-				data.confirmPassword
-			)
-			setIsLoading(false)
-			console.log('result', result)
+			const userId = searchParams.get('userId')
+
+			const secret = searchParams.get('secret')
+
+			const newPassword = data.newPassword
+			const confirmPassword = data.confirmPassword
+
+			if (newPassword !== confirmPassword) {
+				setError('Passwords must match')
+				setIsLoading(false)
+			} else {
+				if (userId && secret) {
+					await updateRecovery({
+						userId: userId,
+						secret: secret,
+						password: newPassword,
+					})
+
+					setIsLoading(false)
+					setError(null)
+
+					router.push('/password-success-reset')
+				} else {
+					setError('UserId and secret not found')
+					setIsLoading(false)
+				}
+			}
 		} catch (error: any) {
-			console.log(error.message)
+			setError(error.message)
 			setIsLoading(false)
 		}
 	}
@@ -109,6 +137,8 @@ export default function NewPasswordForm() {
 					<ErrorMessage text={errors?.confirmPassword?.message as string} />
 				)}
 			</div>
+
+			{error !== null && <ToastError error={error} message={error} />}
 
 			<ButtonSubmit isLoading={isLoading} text='Reset password' />
 		</form>

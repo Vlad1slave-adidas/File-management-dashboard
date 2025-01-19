@@ -10,8 +10,20 @@ h1 {
 	@apply text-4xl font-medium;
 }
 
+h2 {
+	@apply text-3xl font-bold;
+}
+
 label {
 	@apply text-sm font-medium;
+}
+
+input {
+	@apply outline-none;
+}
+
+input::placeholder {
+	@apply text-gray-default;
 }
 
 input[type='checkbox'] {
@@ -41,7 +53,7 @@ input[type='number'] {
 	}
 
 	.button-submit {
-		@apply bg-primary-color px-4 py-2 border text-white rounded-lg hover:bg-primary-color-hover transition-colors ease-linear duration-75;
+		@apply w-full bg-primary-color px-4 py-2 border text-white rounded-lg hover:bg-primary-color-hover transition-colors ease-linear duration-75;
 	}
 
 	.additional-text {

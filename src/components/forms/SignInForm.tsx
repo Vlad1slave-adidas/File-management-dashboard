@@ -104,7 +104,7 @@ export default function SignInForm() {
 				</Link>
 			</div>
 
-			<div className='flex flex-col gap-2'>
+			<div className='flex flex-col gap-3'>
 				<ButtonSubmit isLoading={isLoading} text='Sign in' />
 
 				<ButtonGoogle />
