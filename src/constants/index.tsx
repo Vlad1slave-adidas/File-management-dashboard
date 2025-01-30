@@ -27,21 +27,21 @@ export const Navigation = [
 	{
 		link: '/dashboard',
 		text: 'My Cloud',
-		icon: <House />,
+		icon: <House width={22} height={22} />,
 	},
 	{
 		link: '/dashboard/shared-file',
 		text: 'Shared file',
-		icon: <Users />,
+		icon: <Users width={22} height={22} />,
 	},
 	{
 		link: '/dashboard/starred',
 		text: 'Starred',
-		icon: <Star />,
+		icon: <Star width={22} height={22} />,
 	},
 	{
 		link: '/dashboard/recycle-bin',
 		text: 'Recycle bin',
-		icon: <Trash />,
+		icon: <Trash width={22} height={22} />,
 	},
 ]

@@ -1,4 +1,8 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+	images: {
+		domains: ['cloud.appwrite.io'], // Добавляем домен Appwrite
+	},
+}
 
-export default nextConfig;
+export default nextConfig

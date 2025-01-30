@@ -1,3 +1,5 @@
+declare type FileType = 'document' | 'image' | 'video' | 'audio' | 'other'
+
 declare interface SignInFormData {
 	email: string
 	password: string
@@ -75,4 +77,62 @@ declare interface UpdateRecoveryParams {
 	userId: string
 	secret: string
 	password: string
+}
+
+declare interface UploadFileParams {
+	formData: FormData
+	ownerId: string
+	accountId: string
+	path: string
+}
+
+declare interface CreateFolderParams {
+	formData: FormData
+	accountId: string
+	path: string
+}
+
+declare interface ButtonAddFilesProps {
+	ownerId: string
+	accountId: string
+}
+
+declare interface FileCardProps {
+	name: string
+	icon: string
+	url: string
+	member: number
+	lastModified: string
+}
+
+declare interface ButtonDropdownProps {
+	isOpen: boolean
+	setIsOpen: (isOpen: boolean) => void
+	width?: number
+	height?: number
+}
+
+declare interface FilesSectionProps {
+	files: DocumentList<Document>
+	fileIcons: DocumentList<Document>
+}
+
+declare interface StorageChartProps {
+	usedStorage: number
+	totalStorage: number
+	convertedUsedStorage: string
+	convertedTotalStorage: string
+}
+
+declare interface FileTypeCardProps {
+	image: JSX.Element
+	text: string
+	fileCount: number
+	totalSize: string
+}
+
+declare interface ModalProps {
+	isOpen: boolean
+	content: JSX.Element
+	handler: () => void
 }

@@ -13,8 +13,8 @@ export default function Logo({ isAbsolute }: { isAbsolute?: boolean }) {
 			<div className='bg-primary-color p-[10px] rounded-xl'>
 				<Cloud
 					color='white'
-					width={isAbsolute ? 16 : 20}
-					height={isAbsolute ? 16 : 20}
+					width={isAbsolute ? 16 : 18}
+					height={isAbsolute ? 16 : 18}
 				/>
 			</div>
 			<span className={`font-bold ${isAbsolute ? 'text-base' : 'text-lg'}`}>

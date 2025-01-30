@@ -2,7 +2,7 @@
 
 import { SubmitHandler, useForm } from 'react-hook-form'
 import ErrorMessage from '../ui/messages/ErrorMessage'
-import { getDigitCode } from '@/lib/actions/auth.actions'
+import { getDigitCode } from '@/lib/actions/user.actions'
 import { useState } from 'react'
 import ToastError from '../ui/toasts/ToastError'
 import { useRouter } from 'next/navigation'

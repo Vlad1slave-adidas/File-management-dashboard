@@ -6,7 +6,7 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import ErrorMessage from '../ui/messages/ErrorMessage'
 import { Eye, EyeOff } from 'lucide-react'
 import ButtonSubmit from '../ui/buttons/ButtonSubmit'
-import { updateRecovery } from '@/lib/actions/auth.actions'
+import { updateRecovery } from '@/lib/actions/user.actions'
 import { useRouter, useSearchParams } from 'next/navigation'
 import ToastError from '../ui/toasts/ToastError'
 

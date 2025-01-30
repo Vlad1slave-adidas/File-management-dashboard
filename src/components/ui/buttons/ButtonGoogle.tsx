@@ -33,7 +33,7 @@ export default function ButtonGoogle() {
 				<div>
 					<Image
 						className='absolute left-20'
-						src={'/icons/google.svg'}
+						src={'assets/icons/google.svg'}
 						alt='google'
 						width={28}
 						height={28}

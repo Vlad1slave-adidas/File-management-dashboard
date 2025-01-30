@@ -6,7 +6,7 @@ import Link from 'next/link'
 import ButtonGoogle from '../ui/buttons/ButtonGoogle'
 import useToggleShowPassword from '@/hooks/useToggleShowPassword'
 import { Eye, EyeOff, Loader2 } from 'lucide-react'
-import { signUpWithEmail } from '@/lib/actions/auth.actions'
+import { signUpWithEmail } from '@/lib/actions/user.actions'
 import { useState } from 'react'
 import ToastError from '../ui/toasts/ToastError'
 import ToastSuccess from '../ui/toasts/ToastSuccess'
@@ -38,6 +38,7 @@ export default function SignUpForm() {
 		} catch (error: any) {
 			setIsLoading(false)
 			setErrorToast(error.message)
+			setIsSuccess(false)
 		}
 	}
 

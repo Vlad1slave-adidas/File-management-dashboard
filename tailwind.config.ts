@@ -17,6 +17,10 @@ const config: Config = {
 				'primary-color-hover': '#5521cc',
 				'pink-error': '#F62B6F',
 				'green-success': '#3EC43B',
+				'second-primary': '#FFA660',
+				'second-primary-hover': '#e69657',
+				'chart-second-color': '#F5F1F2',
+				'chart-bg': '#F6F8FF',
 			},
 			boxShadow: {
 				'toast-shadow':

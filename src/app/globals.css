@@ -2,49 +2,84 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-	@apply text-black-default;
+@layer base {
+	body {
+		@apply text-black-default;
+	}
+
+	h1 {
+		@apply text-4xl font-medium;
+	}
+
+	h2 {
+		@apply text-3xl font-bold;
+	}
+
+	h3 {
+		@apply text-xl font-semibold;
+	}
+	h4 {
+		@apply text-lg font-bold;
+	}
+
+	label {
+		@apply text-sm font-medium;
+	}
+
+	/* Input */
+	input {
+		@apply outline-none;
+	}
+
+	input::placeholder {
+		@apply text-gray-default;
+	}
+
+	input:-webkit-autofill {
+		-webkit-box-shadow: 0 0 0 1000px white inset;
+		-webkit-text-fill-color: #000;
+	}
+
+	input[type='checkbox'] {
+		width: 14px;
+		height: 14px;
+		accent-color: #6a29ff;
+	}
+
+	input[type='password']::-ms-reveal,
+	input[type='password']::-ms-clear {
+		display: none;
+	}
+
+	input[type='number']::-webkit-outer-spin-button,
+	input[type='number']::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	input[type='number'] {
+		-moz-appearance: textfield;
+	}
 }
 
-h1 {
-	@apply text-4xl font-medium;
-}
+@layer utilities {
+	.scrollbar::-webkit-scrollbar {
+		width: 8px;
+		height: 8px;
+	}
 
-h2 {
-	@apply text-3xl font-bold;
-}
+	.scrollbar::-webkit-scrollbar-thumb {
+		background-color: rgba(156, 163, 175, 0.6); /* Серый цвет */
+		border-radius: 6px;
+	}
 
-label {
-	@apply text-sm font-medium;
-}
+	.scrollbar::-webkit-scrollbar-thumb:hover {
+		background-color: rgba(156, 163, 175, 0.8);
+	}
 
-input {
-	@apply outline-none;
-}
-
-input::placeholder {
-	@apply text-gray-default;
-}
-
-input[type='checkbox'] {
-	width: 14px;
-	height: 14px;
-	accent-color: #6a29ff;
-}
-
-input[type='password']::-ms-reveal,
-input[type='password']::-ms-clear {
-	display: none;
-}
-
-input[type='number']::-webkit-outer-spin-button,
-input[type='number']::-webkit-inner-spin-button {
-	-webkit-appearance: none;
-	margin: 0;
-}
-
-input[type='number'] {
-	-moz-appearance: textfield;
+	.scrollbar::-webkit-scrollbar-track {
+		background: transparent;
+	}
 }
 
 @layer components {

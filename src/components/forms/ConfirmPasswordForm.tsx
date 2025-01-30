@@ -5,7 +5,7 @@ import Link from 'next/link'
 import {
 	confirmPassword,
 	createPasswordRecovery,
-} from '@/lib/actions/auth.actions'
+} from '@/lib/actions/user.actions'
 import { useState } from 'react'
 import ToastError from '../ui/toasts/ToastError'
 import ButtonSubmit from '../ui/buttons/ButtonSubmit'

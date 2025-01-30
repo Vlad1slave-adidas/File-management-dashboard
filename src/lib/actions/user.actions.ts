@@ -4,6 +4,7 @@ import { cookies } from 'next/headers'
 import { createAdminClient, createSessionClient } from '../server/appwrite'
 import { redirect } from 'next/navigation'
 import { ID } from 'node-appwrite'
+import { appwriteConfig } from '../server/config'
 
 export async function signInWithEmail(data: SignInParams) {
 	let success = false
@@ -38,9 +39,10 @@ export async function signUpWithEmail(data: SignUpParams) {
 		const password = data.password
 		const name = data.name
 
-		const { account } = await createAdminClient()
+		const { account, databases, storage } = await createAdminClient()
 
-		await account.create(ID.unique(), email, password, name)
+		const newAccount = await account.create(ID.unique(), email, password, name)
+
 		const session = await account.createEmailPasswordSession(email, password)
 
 		cookies().set('my-custom-session', session.secret, {
@@ -49,6 +51,34 @@ export async function signUpWithEmail(data: SignUpParams) {
 			sameSite: 'strict',
 			secure: true,
 		})
+
+		const { avatars } = await createSessionClient()
+
+		const avatarInitial = await avatars.getInitials(name)
+
+		// Преобразуем ArrayBuffer в Blob
+		const blob = new Blob([avatarInitial], { type: 'image/png' })
+
+		// Преобразуем Blob в File (если требуется, например, имя файла)
+		const file = new File([blob], `${ID.unique()}.png`, { type: 'image/png' })
+
+		const fileResponse = await storage.createFile(
+			appwriteConfig.bucketId,
+			ID.unique(),
+			file
+		)
+
+		await databases.createDocument(
+			appwriteConfig.databaseId,
+			appwriteConfig.usersCollectionId,
+			ID.unique(),
+			{
+				name: newAccount.name,
+				email: newAccount.email,
+				accountId: newAccount.$id,
+				avatar: fileResponse.$id,
+			}
+		)
 	} catch (error: any) {
 		throw new Error(error.message)
 	}
