@@ -16,11 +16,13 @@ export default function ButtonDropdown({
 			onClick={handleOpen}
 			className='text-gray-default hover:text-primary-color transition-colors duration-75 ease-linear'
 		>
-			{isOpen ? (
-				<ChevronDown width={width} height={height} />
-			) : (
-				<ChevronUp width={width} height={height} />
-			)}
+			<div className='hover:bg-primary-color/5 rounded-lg p-1'>
+				{isOpen ? (
+					<ChevronDown width={width} height={height} />
+				) : (
+					<ChevronUp width={width} height={height} />
+				)}
+			</div>
 		</button>
 	)
 }

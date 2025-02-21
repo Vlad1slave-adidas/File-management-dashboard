@@ -95,7 +95,6 @@ export const getFiles = async () => {
 			queries // queries (optional)
 		)
 
-		console.log(files)
 		return files
 	} catch (error: any) {
 		throw new Error(error.message)

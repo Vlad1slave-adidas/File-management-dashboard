@@ -89,7 +89,7 @@ declare interface UploadFileParams {
 declare interface CreateFolderParams {
 	formData: FormData
 	accountId: string
-	path: string
+	id?: string
 }
 
 declare interface ButtonAddFilesProps {
@@ -135,4 +135,10 @@ declare interface ModalProps {
 	isOpen: boolean
 	content: JSX.Element
 	handler: () => void
+}
+
+declare type Folder = {
+	$id: string
+	name: string
+	children: Folder[]
 }

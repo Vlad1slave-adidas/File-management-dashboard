@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import FileCard from '../ui/cards/FileCard'
 import { formatDate } from '@/lib/utils/formatDate'
 import { ArrowUp } from 'lucide-react'
+import ButtonOptions from '../ui/buttons/ButtonOptions'
 import ButtonDropdown from '../ui/buttons/ButtonDropdown'
 
 export default function FilesSection({ files, fileIcons }: FilesSectionProps) {
@@ -22,7 +23,7 @@ export default function FilesSection({ files, fileIcons }: FilesSectionProps) {
 			</div>
 			{files && isOpen && (
 				<div className='flex-1 overflow-auto scrollbar'>
-					<div className='w-full grid grid-cols-[9fr_4fr_5fr_1fr] items-center text-gray-default font-semibold text-sm mb-2'>
+					<div className='w-full grid grid-cols-[9fr_4fr_5fr_0fr] pr-10 items-center text-gray-default font-semibold text-sm mb-2'>
 						<span className='flex items-center gap-[6px]'>
 							<span>Name</span>
 							<ArrowUp width={14} height={14} />

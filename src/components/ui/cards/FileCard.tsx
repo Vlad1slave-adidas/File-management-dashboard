@@ -14,7 +14,7 @@ export default function FileCard({
 		<Link
 			href={url}
 			target='_blank'
-			className='text-sm w-full grid grid-cols-[9fr_4fr_5fr_1fr] items-center text-gray-default hover:bg-white rounded-xl py-3'
+			className='text-sm w-full grid grid-cols-[9fr_4fr_5fr_0fr] items-center text-gray-default hover:bg-white rounded-xl py-3 pr-3'
 		>
 			<div className='pl-2 flex items-center gap-4'>
 				<Image src={icon} width={28} height={28} alt='file-icon' />
@@ -24,7 +24,7 @@ export default function FileCard({
 			</div>
 			<span>{member}</span>
 			<time dateTime={lastModified}>{lastModified}</time>
-			<ButtonOptions />
+			<ButtonOptions width='20' height='20' />
 		</Link>
 	)
 }

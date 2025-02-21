@@ -3,8 +3,13 @@
 import { PlusCircle } from 'lucide-react'
 import React, { useState } from 'react'
 import Modal from '../modal/Modal'
+import CreateFolderForm from '../forms/CreateFolderForm'
 
-export default function ButtonCreateFolder() {
+export default function ButtonCreateFolder({
+	accountId,
+}: {
+	accountId: string
+}) {
 	const [isOpen, setIsOpen] = useState<boolean>(false)
 
 	const handleOpen = () => {
@@ -25,7 +30,11 @@ export default function ButtonCreateFolder() {
 				<span>Create Folder</span>
 			</button>
 
-			<Modal isOpen={isOpen} handler={handleClose} content={<div>Hello</div>} />
+			<Modal
+				isOpen={isOpen}
+				handler={handleClose}
+				content={<CreateFolderForm accountId={accountId} />}
+			/>
 		</>
 	)
 }

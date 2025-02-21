@@ -4,7 +4,7 @@ import Profile from '../ui/profile/Profile'
 
 export default function Header({ avatar }: { avatar: string }) {
 	return (
-		<div className='flex justify-between mb-12'>
+		<div className='flex justify-between mb-6'>
 			<SearchField />
 			<div className='flex items-center gap-8'>
 				<NotificationButton />
